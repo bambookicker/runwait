@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func RunWait(name string, arg ...string) (output string, errExt string, err error) {
+func runWait(name string, arg ...string) (output string, errExt string, err error) {
 	cmd := exec.Command(name, arg...)
 	var out, stderr bytes.Buffer
 	cmd.Stdout = &out
@@ -22,8 +22,8 @@ func RunWait(name string, arg ...string) (output string, errExt string, err erro
 	return
 }
 
-func RunWait2(name string, arg ...string) (output string, err error) {
-	output, errExt, err := RunWait(name, arg...)
+func RunWait(name string, arg ...string) (output string, err error) {
+	output, errExt, err := runWait(name, arg...)
 	if err != nil {
 		err = errors.New(errExt)
 	}
