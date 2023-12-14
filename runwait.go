@@ -25,7 +25,9 @@ func runWait(name string, arg ...string) (output string, errExt string, err erro
 func RunWait(name string, arg ...string) (output string, err error) {
 	output, errExt, err := runWait(name, arg...)
 	if err != nil {
-		err = errors.New(errExt)
+		if errExt != "" {
+			err = errors.New(errExt)
+		}
 	}
 	return
 }
